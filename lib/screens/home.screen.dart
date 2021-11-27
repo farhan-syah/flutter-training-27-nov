@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../models/product.model.dart';
+
 class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -87,6 +89,19 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
+          SizedBox(height: 20),
+          SingleChildScrollView(
+            padding: EdgeInsets.only(left: 20, right: 10),
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: List.generate(
+                products.length,
+                (index) => ProductContainer(
+                  product: products[index],
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -132,6 +147,104 @@ class Label extends StatelessWidget {
   }
 }
 
+class ProductContainer extends StatelessWidget {
+  final Product product;
+
+  ProductContainer({required this.product});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 210,
+      height: 270,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          image: AssetImage(product.imagePath),
+        ),
+        borderRadius: BorderRadius.circular(30),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(top: 15, right: 10),
+            child: Container(
+              padding: EdgeInsets.all(5),
+              decoration:
+                  BoxDecoration(shape: BoxShape.circle, color: Colors.white70),
+              child: Icon(
+                Icons.favorite,
+                color: Colors.red,
+                size: 16,
+              ),
+            ),
+          ),
+          Spacer(),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.grey.shade50.withAlpha(150),
+              ),
+              padding: EdgeInsets.all(8),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        product.name,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Spacer(),
+                      Container(
+                        padding: EdgeInsets.only(
+                            top: 5, bottom: 5, left: 7, right: 7),
+                        decoration: BoxDecoration(
+                            color: Colors.grey.shade700,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Text(
+                          'NEW',
+                          style: TextStyle(fontSize: 12, color: Colors.white),
+                        ),
+                      )
+                    ],
+                  ),
+                  Text(
+                    product.description,
+                    style: TextStyle(fontSize: 12, color: Colors.grey.shade900),
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        '\$ ${product.price / 100} ',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 15),
+                      ),
+                      Spacer(),
+                      Container(
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                            color: Colors.black, shape: BoxShape.circle),
+                        child: Icon(
+                          Icons.add,
+                          color: Colors.grey,
+                          size: 15,
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
 List<String> categories = [
   'Chair',
   'Sofa',
@@ -139,4 +252,14 @@ List<String> categories = [
   'Lamp',
   'Kitchen',
   'Office'
+];
+
+List<Product> products = [
+  Product(
+    name: 'Stylish Chair',
+    description: 'Recliners and living room seating',
+    price: 15099,
+    isNew: true,
+    imagePath: 'assets/images/chair.jpg',
+  ),
 ];
