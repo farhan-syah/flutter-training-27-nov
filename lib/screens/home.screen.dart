@@ -7,11 +7,33 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Classroom App'),
+        leading: Icon(
+          Icons.menu,
+        ),
         actions: [
           Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Icon(Icons.person),
+            padding: const EdgeInsets.only(right: 20),
+            child: Row(
+              children: [
+                Icon(Icons.shopping_bag),
+                SizedBox(width: 10),
+                Stack(
+                  children: [
+                    Icon(Icons.notifications),
+                    Padding(
+                      padding: EdgeInsets.only(left: 13, top: 5),
+                      child: ClipOval(
+                        child: Container(
+                          width: 7,
+                          height: 7,
+                          color: Colors.red,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
           )
         ],
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_training_27nov/screens/home.screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -90,7 +91,15 @@ class SplashScreen extends StatelessWidget {
         child: FloatingActionButton(
           backgroundColor: Colors.grey.shade700,
           child: Icon(Icons.arrow_forward_ios),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) {
+                  return HomeScreen();
+                },
+              ),
+            );
+          },
         ),
       ),
     );
