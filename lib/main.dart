@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_training_27nov/screens/home.screen.dart';
+import 'package:flutter_training_27nov/screens/splash.screen.dart';
+
+// https://dribbble.com/shots/16914673-Furniture-Mobile-App-Design
 
 void main() {
   runApp(const MyApp());
@@ -9,8 +13,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return MaterialApp(
+      home: SplashScreen(),
+    );
   }
 }
-
-
