@@ -4,6 +4,8 @@ class Product {
   final int price;
   final bool isNew;
   final String imagePath;
+  final double rating;
+  final int reviewCount;
 
   Product({
     required this.name,
@@ -11,5 +13,7 @@ class Product {
     required this.price,
     required this.isNew,
     required this.imagePath,
+    required this.rating,
+    required this.reviewCount,
   });
 }

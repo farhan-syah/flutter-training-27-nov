@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_training_27nov/screens/product.screen.dart';
 
 import '../models/product.model.dart';
 
@@ -154,92 +155,107 @@ class ProductContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 210,
-      height: 270,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: AssetImage(product.imagePath),
-        ),
-        borderRadius: BorderRadius.circular(30),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(top: 15, right: 10),
-            child: Container(
-              padding: EdgeInsets.all(5),
-              decoration:
-                  BoxDecoration(shape: BoxShape.circle, color: Colors.white70),
-              child: Icon(
-                Icons.favorite,
-                color: Colors.red,
-                size: 16,
-              ),
+    return Padding(
+      padding: const EdgeInsets.only(right: 10),
+      child: GestureDetector(
+        child: Container(
+          width: 210,
+          height: 270,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image: AssetImage(product.imagePath),
             ),
+            borderRadius: BorderRadius.circular(30),
           ),
-          Spacer(),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.grey.shade50.withAlpha(150),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: 15, right: 10),
+                child: Container(
+                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle, color: Colors.white70),
+                  child: Icon(
+                    Icons.favorite,
+                    color: Colors.red,
+                    size: 16,
+                  ),
+                ),
               ),
-              padding: EdgeInsets.all(8),
-              child: Column(
-                children: [
-                  Row(
+              Spacer(),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.grey.shade50.withAlpha(150),
+                  ),
+                  padding: EdgeInsets.all(8),
+                  child: Column(
                     children: [
-                      Text(
-                        product.name,
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                      Row(
+                        children: [
+                          Text(
+                            product.name,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Spacer(),
+                          Container(
+                            padding: EdgeInsets.only(
+                                top: 5, bottom: 5, left: 7, right: 7),
+                            decoration: BoxDecoration(
+                                color: Colors.grey.shade700,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Text(
+                              'NEW',
+                              style:
+                                  TextStyle(fontSize: 12, color: Colors.white),
+                            ),
+                          )
+                        ],
                       ),
-                      Spacer(),
-                      Container(
-                        padding: EdgeInsets.only(
-                            top: 5, bottom: 5, left: 7, right: 7),
-                        decoration: BoxDecoration(
-                            color: Colors.grey.shade700,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Text(
-                          'NEW',
-                          style: TextStyle(fontSize: 12, color: Colors.white),
-                        ),
-                      )
-                    ],
-                  ),
-                  Text(
-                    product.description,
-                    style: TextStyle(fontSize: 12, color: Colors.grey.shade900),
-                  ),
-                  Row(
-                    children: [
                       Text(
-                        '\$ ${product.price / 100} ',
+                        product.description,
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 15),
+                            fontSize: 12, color: Colors.grey.shade900),
                       ),
-                      Spacer(),
-                      Container(
-                        padding: EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                            color: Colors.black, shape: BoxShape.circle),
-                        child: Icon(
-                          Icons.add,
-                          color: Colors.grey,
-                          size: 15,
-                        ),
-                      )
+                      Row(
+                        children: [
+                          Text(
+                            '\$ ${product.price / 100} ',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15),
+                          ),
+                          Spacer(),
+                          Container(
+                            padding: EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                                color: Colors.black, shape: BoxShape.circle),
+                            child: Icon(
+                              Icons.add,
+                              color: Colors.grey,
+                              size: 15,
+                            ),
+                          )
+                        ],
+                      ),
                     ],
                   ),
-                ],
-              ),
+                ),
+              )
+            ],
+          ),
+        ),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ProductScreen(product: product),
             ),
-          )
-        ],
+          );
+        },
       ),
     );
   }
@@ -256,10 +272,19 @@ List<String> categories = [
 
 List<Product> products = [
   Product(
-    name: 'Stylish Chair',
-    description: 'Recliners and living room seating',
-    price: 15099,
-    isNew: true,
-    imagePath: 'assets/images/chair.jpg',
-  ),
+      name: 'Stylish Chair',
+      description: 'Recliners and living room seating',
+      price: 15099,
+      isNew: true,
+      imagePath: 'assets/images/chair.jpg',
+      rating: 4.8,
+      reviewCount: 347),
+  Product(
+      name: 'Stylish Chair 2',
+      description: 'Recliners and living room seating',
+      price: 15099,
+      isNew: true,
+      imagePath: 'assets/images/chair2.jpg',
+      rating: 4.9,
+      reviewCount: 312),
 ];

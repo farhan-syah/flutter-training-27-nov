@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_training_27nov/screens/dashboard.dart';
 import 'package:flutter_training_27nov/screens/home.screen.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -95,7 +96,7 @@ class SplashScreen extends StatelessWidget {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) {
-                  return HomeScreen();
+                  return DashboardScreen();
                 },
               ),
             );
