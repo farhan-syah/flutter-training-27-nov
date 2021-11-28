@@ -1,14 +1,14 @@
+import 'package:get/get.dart';
+
 import '../models/cart-item.model.dart';
 
-final CartController cartController = CartController.instance;
+// final CartController cartController = CartController.instance;
 
-class CartController {
-  static get instance => CartController._private();
-
+class CartController extends GetxController {
   int discount = 0;
   int total = 0;
 
-  CartController._private();
+  CartController();
 
   List<CartItem> cartItemList = [];
 
