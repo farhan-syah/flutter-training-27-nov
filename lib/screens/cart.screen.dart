@@ -89,7 +89,7 @@ class _CartItemContainerState extends State<CartItemContainer> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(widget.cartItem.product.name),
-                Text('\$ ${widget.cartItem.product.price / 100}'),
+                Text('RM ${widget.cartItem.product.price / 100}'),
               ],
             ),
           ),

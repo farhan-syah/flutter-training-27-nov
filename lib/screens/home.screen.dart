@@ -224,7 +224,7 @@ class ProductContainer extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            '\$ ${product.price / 100} ',
+                            'RM ${product.price / 100} ',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 15),
                           ),

@@ -80,7 +80,7 @@ class ProductScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     Text(
-                      '\$ ${product.price / 100}',
+                      'RM ${product.price / 100}',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
