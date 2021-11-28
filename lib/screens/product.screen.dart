@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_training_27nov/screens/cart.screen.dart';
 
+import '../models/cart-item.model.dart';
 import '../models/product.model.dart';
+import '../widgets/custom-button.widget.dart';
 
 class ProductScreen extends StatelessWidget {
   final Product product;
@@ -105,17 +108,23 @@ class ProductScreen extends StatelessWidget {
                           color: Colors.grey, fontWeight: FontWeight.w600),
                     ),
                     Spacer(),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Text('Add to cart'),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.black,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(25),
-                          ),
-                        ),
-                      ),
+                    CustomButton(
+                      label: 'Add to cart',
+                      onPressed: () {
+                        final index = cartItemList.indexWhere(
+                            (cartItem) => cartItem.product.id == product.id);
+
+                        if (index == -1) {
+                          product.quantity = 1;
+                          cartItemList.add(
+                            CartItem(product: product),
+                          );
+                        } else {
+                          final cartItem = cartItemList[index];
+                          cartItem.product.quantity++;
+                        }
+                        //     if(cartItemList.where((cartItem) => cartItem.product.id == product.id ))
+                      },
                     )
                   ],
                 ),
@@ -125,48 +134,6 @@ class ProductScreen extends StatelessWidget {
         ],
       ),
       extendBodyBehindAppBar: true,
-    );
-  }
-}
-
-class CustomIconButton extends StatelessWidget {
-  final IconData iconData;
-  final EdgeInsetsGeometry padding;
-  final Color? iconColor;
-  final Function onTap;
-
-  CustomIconButton({
-    required this.iconData,
-    required this.padding,
-    this.iconColor,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(10),
-      child: Material(
-        borderRadius: BorderRadius.circular(30),
-        clipBehavior: Clip.hardEdge,
-        color: Colors.white54,
-        child: InkWell(
-          child: Padding(
-            padding: padding,
-            child: Container(
-              width: 37,
-              child: Icon(
-                iconData,
-                size: 16,
-                color: iconColor ?? Colors.grey.shade800,
-              ),
-            ),
-          ),
-          onTap: () {
-            onTap();
-          },
-        ),
-      ),
     );
   }
 }

@@ -1,4 +1,5 @@
 class Product {
+  final String id;
   final String name;
   final String description;
   final int price;
@@ -6,8 +7,10 @@ class Product {
   final String imagePath;
   final double rating;
   final int reviewCount;
+  int quantity = 0;
 
   Product({
+    required this.id,
     required this.name,
     required this.description,
     required this.price,

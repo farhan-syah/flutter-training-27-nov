@@ -272,6 +272,7 @@ List<String> categories = [
 
 List<Product> products = [
   Product(
+      id: "1",
       name: 'Stylish Chair',
       description: 'Recliners and living room seating',
       price: 15099,
@@ -280,6 +281,7 @@ List<Product> products = [
       rating: 4.8,
       reviewCount: 347),
   Product(
+      id: "2",
       name: 'Stylish Chair 2',
       description: 'Recliners and living room seating',
       price: 15099,
