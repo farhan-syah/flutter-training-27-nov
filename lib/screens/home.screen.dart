@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_training_27nov/screens/product.screen.dart';
+import 'package:flutter_training_27nov/services/api.service.dart';
 
 import '../models/product.model.dart';
 
@@ -91,18 +92,32 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           SizedBox(height: 20),
-          SingleChildScrollView(
-            padding: EdgeInsets.only(left: 20, right: 10),
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: List.generate(
-                products.length,
-                (index) => ProductContainer(
-                  product: products[index],
-                ),
-              ),
-            ),
-          ),
+          FutureBuilder<List<Product>>(
+              future: getProducts(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  List<Product> products = snapshot.data!;
+
+                  return SingleChildScrollView(
+                    padding: EdgeInsets.only(left: 20, right: 10),
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: List.generate(
+                        products.length,
+                        (index) => ProductContainer(
+                          product: products[index],
+                        ),
+                      ),
+                    ),
+                  );
+                } else
+                  return Container();
+              }),
+          ElevatedButton(
+              onPressed: () {
+                // getProducts();
+              },
+              child: Text('Test Api'))
         ],
       ),
     );
@@ -270,23 +285,23 @@ List<String> categories = [
   'Office'
 ];
 
-List<Product> products = [
-  Product(
-      id: "1",
-      name: 'Stylish Chair',
-      description: 'Recliners and living room seating',
-      price: 15099,
-      isNew: true,
-      imagePath: 'assets/images/chair.jpg',
-      rating: 4.8,
-      reviewCount: 347),
-  Product(
-      id: "2",
-      name: 'Stylish Chair 2',
-      description: 'Recliners and living room seating',
-      price: 15099,
-      isNew: true,
-      imagePath: 'assets/images/chair2.jpg',
-      rating: 4.9,
-      reviewCount: 312),
-];
+// List<Product> products = [
+//   Product(
+//       id: "1",
+//       name: 'Stylish Chair',
+//       description: 'Recliners and living room seating',
+//       price: 15099,
+//       isNew: true,
+//       imagePath: 'assets/images/chair.jpg',
+//       rating: 4.8,
+//       reviewCount: 347),
+//   Product(
+//       id: "2",
+//       name: 'Stylish Chair 2',
+//       description: 'Recliners and living room seating',
+//       price: 15099,
+//       isNew: true,
+//       imagePath: 'assets/images/chair2.jpg',
+//       rating: 4.9,
+//       reviewCount: 312),
+// ];

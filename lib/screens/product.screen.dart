@@ -115,22 +115,7 @@ class ProductScreen extends StatelessWidget {
                     CustomButton(
                       label: 'Add to cart',
                       onPressed: () {
-                        // print(cartController.cartItemList);
-                        final index = cartController.cartItemList.indexWhere(
-                            (cartItem) => cartItem.product.id == product.id);
-
-                        if (index == -1) {
-                          product.quantity = 1;
-                          cartController.cartItemList.add(
-                            CartItem(product: product),
-                          );
-                        } else {
-                          final cartItem = cartController.cartItemList[index];
-                          cartItem.product.quantity++;
-                        }
-
-                        // cartController.update();
-                        //     if(cartItemList.where((cartItem) => cartItem.product.id == product.id ))
+                        cartController.addProduct(product);
                       },
                     )
                   ],

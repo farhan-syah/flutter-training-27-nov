@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "669134240118",
+    "project_id": "fluttertraining27nov",
+    "storage_bucket": "fluttertraining27nov.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:669134240118:android:21769fdeb6a34777c36257",
+        "android_client_info": {
+          "package_name": "com.bizimpulse.flutter_training_27nov"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "669134240118-saf9psp3a24pghbrrq01rr4l8nqaqcbe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMVACu6WZ_kyM-iOn7v1ca4Wr6oisC43E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "669134240118-saf9psp3a24pghbrrq01rr4l8nqaqcbe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

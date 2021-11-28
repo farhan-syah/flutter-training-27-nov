@@ -19,4 +19,31 @@ class Product {
     required this.rating,
     required this.reviewCount,
   });
+
+  static Product fromMap(Map<String, dynamic> data) {
+    return Product(
+      id: data['id'],
+      name: data['name'],
+      description: data['description'],
+      price: data['price'],
+      isNew: data['isNew'],
+      imagePath: data['imagePath'],
+      rating: data['rating'],
+      reviewCount: data['reviewCount'],
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'description': description,
+      'price': price,
+      'isNew': isNew,
+      'imagePath': imagePath,
+      'rating': rating,
+      'reviewCount': reviewCount,
+      'quantity': quantity,
+    };
+  }
 }

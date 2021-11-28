@@ -109,7 +109,7 @@ class CartItemContainer extends StatelessWidget {
                     ),
                     onTap: () {
                       cartItem.product.quantity--;
-                      cartController.update();
+                      cartController.updateData();
                     },
                   ),
                   Container(
@@ -126,7 +126,7 @@ class CartItemContainer extends StatelessWidget {
                     ),
                     onTap: () {
                       cartItem.product.quantity++;
-                      cartController.update();
+                      cartController.updateData();
                     },
                   ),
                 ],
