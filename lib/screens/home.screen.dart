@@ -117,12 +117,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 } else
                   return Container();
               }),
-          ElevatedButton(
-              onPressed: () {
-                // getProducts();
-                getCartItems();
-              },
-              child: Text('Test Api'))
+          // ElevatedButton(
+          //     onPressed: () {
+          //       // getProducts();
+          //       getCartItems();
+          //     },
+          //     child: Text('Test Api'))
         ],
       ),
     );
