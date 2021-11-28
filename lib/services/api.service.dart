@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_training_27nov/controller/cart.controller.dart';
 import 'package:get/get.dart';
@@ -10,6 +11,7 @@ import '../models/user.model.dart';
 
 // final api = Api.instance();
 final firestore = FirebaseFirestore.instance;
+FirebaseAuth auth = FirebaseAuth.instance;
 //
 // class Api {
 //   Api();
@@ -55,19 +57,19 @@ Future<List<Product>> getProducts() async {
 }
 
 addCartDataToFirebase(CartController cartController) {
-  final MyUser? user = Get.find<UserController>().user;
+  final User? user = Get.find<UserController>().user;
   if (user != null) {
     print(cartController.toMap());
 
-    firestore.collection('cart').doc(user.id).set(cartController.toMap());
+    firestore.collection('cart').doc(user.uid).set(cartController.toMap());
   }
 }
 
 Future<List<CartItem>> getCartItems() async {
-  final MyUser? user = Get.find<UserController>().user;
+  final User? user = Get.find<UserController>().user;
   List<CartItem> carItemList = [];
   if (user != null) {
-    final data = await firestore.doc('cart/${user.id}').get();
+    final data = await firestore.doc('cart/${user.uid}').get();
     if (data.exists) {
       carItemList = (data.data()!['cartItemList'] as List)
           .map((e) => CartItem.fromMap(e))
@@ -76,4 +78,24 @@ Future<List<CartItem>> getCartItems() async {
   }
   // print(carItemList.length);
   return carItemList;
+}
+
+Future<bool> login({required String email, required String password}) async {
+  try {
+    UserCredential user =
+        await auth.signInWithEmailAndPassword(email: email, password: password);
+    if (user.user != null) {
+      print(user.user?.uid);
+      Get.find<UserController>().user = user.user;
+      return true;
+    }
+  } catch (e) {
+    print(e);
+  }
+  return false;
+}
+
+logout() async {
+  await auth.signOut();
+  Get.find<UserController>().user = null;
 }

@@ -1,6 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_training_27nov/controller/user.controller.dart';
 import 'package:flutter_training_27nov/screens/dashboard.dart';
 import 'package:flutter_training_27nov/screens/home.screen.dart';
+import 'package:flutter_training_27nov/screens/login.screen.dart';
+import 'package:get/get.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -96,7 +100,11 @@ class SplashScreen extends StatelessWidget {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) {
-                  return DashboardScreen();
+                  final User? user = Get.find<UserController>().user;
+                  if (user != null)
+                    return DashboardScreen();
+                  else
+                    return LoginScreen();
                 },
               ),
             );
