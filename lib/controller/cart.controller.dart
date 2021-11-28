@@ -16,24 +16,24 @@ class CartController extends GetxController {
   int get getTotal {
     int total = 0;
     cartItemList.forEach((cartItem) {
-      total += cartItem.product.price * cartItem.product.quantity;
+      total += cartItem.price * cartItem.quantity;
     });
 
     return total;
   }
 
   addProduct(Product product) {
-    final index = cartItemList
-        .indexWhere((cartItem) => cartItem.product.id == product.id);
+    final index =
+        cartItemList.indexWhere((cartItem) => cartItem.productId == product.id);
 
     if (index == -1) {
       product.quantity = 1;
       cartItemList.add(
-        CartItem(product: product),
+        CartItem.fromProduct(product: product),
       );
     } else {
       final cartItem = cartItemList[index];
-      cartItem.product.quantity++;
+      cartItem.quantity++;
     }
 
     updateData();
@@ -44,11 +44,16 @@ class CartController extends GetxController {
     update();
   }
 
+  retreiveData() async {
+    cartItemList = await getCartItems();
+    update();
+  }
+
   Map<String, dynamic> toMap() {
     return {
       'discount': discount,
       'total': getTotal,
-      'cartItemList': cartItemList.map((e) => e.product.toMap()).toList()
+      'cartItemList': cartItemList.map((e) => e.toMap()).toList()
     };
   }
 }

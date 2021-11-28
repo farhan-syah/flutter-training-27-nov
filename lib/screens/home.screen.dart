@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_training_27nov/screens/product.screen.dart';
 import 'package:flutter_training_27nov/services/api.service.dart';
+import 'package:get/get.dart';
 
+import '../controller/cart.controller.dart';
 import '../models/product.model.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -11,6 +13,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int currentCategoryIndex = 0;
+
+  final updateData = Get.find<CartController>().retreiveData();
 
   @override
   Widget build(BuildContext context) {
@@ -116,6 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ElevatedButton(
               onPressed: () {
                 // getProducts();
+                getCartItems();
               },
               child: Text('Test Api'))
         ],

@@ -80,7 +80,7 @@ class CartItemContainer extends StatelessWidget {
             width: 70,
             height: 70,
             child: Image.asset(
-              cartItem.product.imagePath,
+              cartItem.imagePath,
               fit: BoxFit.cover,
             ),
           ),
@@ -89,8 +89,8 @@ class CartItemContainer extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(cartItem.product.name),
-                Text('RM ${cartItem.product.price / 100}'),
+                Text(cartItem.productName),
+                Text('RM ${cartItem.price / 100}'),
               ],
             ),
           ),
@@ -108,14 +108,14 @@ class CartItemContainer extends StatelessWidget {
                       child: Text('  -  ', style: customTextStyle),
                     ),
                     onTap: () {
-                      cartItem.product.quantity--;
+                      cartItem.quantity--;
                       cartController.updateData();
                     },
                   ),
                   Container(
                     width: 40,
                     child: Center(
-                        child: Text(cartItem.product.quantity.toString(),
+                        child: Text(cartItem.quantity.toString(),
                             style: customTextStyle)),
                   ),
                   InkWell(
@@ -125,7 +125,7 @@ class CartItemContainer extends StatelessWidget {
                       child: Text('  +  ', style: customTextStyle),
                     ),
                     onTap: () {
-                      cartItem.product.quantity++;
+                      cartItem.quantity++;
                       cartController.updateData();
                     },
                   ),

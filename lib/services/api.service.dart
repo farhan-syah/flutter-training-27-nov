@@ -4,6 +4,7 @@ import 'package:flutter_training_27nov/controller/cart.controller.dart';
 import 'package:get/get.dart';
 
 import '../controller/user.controller.dart';
+import '../models/cart-item.model.dart';
 import '../models/product.model.dart';
 import '../models/user.model.dart';
 
@@ -55,7 +56,6 @@ Future<List<Product>> getProducts() async {
 
 addCartDataToFirebase(CartController cartController) {
   final MyUser? user = Get.find<UserController>().user;
-
   if (user != null) {
     print(cartController.toMap());
 
@@ -63,4 +63,17 @@ addCartDataToFirebase(CartController cartController) {
   }
 }
 
-getCartItems() {}
+Future<List<CartItem>> getCartItems() async {
+  final MyUser? user = Get.find<UserController>().user;
+  List<CartItem> carItemList = [];
+  if (user != null) {
+    final data = await firestore.doc('cart/${user.id}').get();
+    if (data.exists) {
+      carItemList = (data.data()!['cartItemList'] as List)
+          .map((e) => CartItem.fromMap(e))
+          .toList();
+    }
+  }
+  // print(carItemList.length);
+  return carItemList;
+}
