@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_training_27nov/screens/cart.screen.dart';
 
+import '../controller/cart.controller.dart';
 import '../models/cart-item.model.dart';
 import '../models/product.model.dart';
 import '../widgets/custom-button.widget.dart';
@@ -111,16 +112,17 @@ class ProductScreen extends StatelessWidget {
                     CustomButton(
                       label: 'Add to cart',
                       onPressed: () {
-                        final index = cartItemList.indexWhere(
+                        print(cartController.cartItemList);
+                        final index = cartController.cartItemList.indexWhere(
                             (cartItem) => cartItem.product.id == product.id);
 
                         if (index == -1) {
                           product.quantity = 1;
-                          cartItemList.add(
+                          cartController.cartItemList.add(
                             CartItem(product: product),
                           );
                         } else {
-                          final cartItem = cartItemList[index];
+                          final cartItem = cartController.cartItemList[index];
                           cartItem.product.quantity++;
                         }
                         //     if(cartItemList.where((cartItem) => cartItem.product.id == product.id ))
